@@ -72,11 +72,14 @@ Build mode: learn
 ## Hands-on Checkpoints
 
 - [x] Early usable behavior explored — after slice 3 (the kernel working end to end)
-- [ ] Final kick-the-tires exploration and feedback completed
+- [x] Final kick-the-tires exploration and feedback completed
 
 ## Final Review
 
-- [ ] Final review complete — feedback resolved and learner confirms ready to ship
+- [x] Welcome intro line ("Start by sharing your present airport, boarding gate & time") stays on one line on desktop and wraps to at most two lines on a phone
+- [x] Photo credit on the Welcome screen is very light gray
+- Dropped by the learner: closing the Interests and venue dropdowns automatically (not wanted for now).
+- [x] Final review complete — feedback resolved and learner confirms ready to ship
 
 ## Code Tour and App Map
 

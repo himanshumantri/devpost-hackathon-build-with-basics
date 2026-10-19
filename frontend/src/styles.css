@@ -70,7 +70,7 @@ button:focus-visible {
 .credit {
   margin: -6px 0 0;
   font-size: 0.7rem;
-  color: var(--muted);
+  color: #b9bfc6; /* very light on purpose; the full credit is also in the README */
   text-align: center;
 }
 
@@ -79,6 +79,15 @@ button:focus-visible {
   text-align: center;
   font-size: 1.05rem;
   font-weight: 700;
+}
+
+/* On wider screens the line stays on one row, even if it runs a little wider than the form.
+   On a phone it wraps to two lines. */
+@media (min-width: 640px) {
+  .intro {
+    white-space: nowrap;
+    align-self: center;
+  }
 }
 
 .hint {
