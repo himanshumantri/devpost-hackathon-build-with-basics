@@ -39,7 +39,7 @@ Build mode: learn
   Learner check: Run the demo path (LHR, 6:00 PM, Startups + Cafe) and look at the cards. Then try JFK or a very different time to see the no-matches message. Say whether the cards and messages look and feel the way you pictured.
   Commit: `Add Interests screen and Nearby People list`
 
-- [ ] **4. Basic Information screen joins the journey**
+- [x] **4. Basic Information screen joins the journey**
   Becomes usable: After Start, you fill in Basic Information (picture by camera or upload, name, date/month/year pickers from 1950 to 2020, profession, gender, native city), then Continue goes to Interests. Picture, name, profession and gender are required.
   Why now: Completes the first half of the core journey. It is placed after the kernel because matching does not depend on it, and your profile data never goes to the backend.
   PRD ref: `prd.md > Features and Behavior > Basic Information (flow 2)`, `prd.md > The Core Journey`
@@ -91,3 +91,7 @@ Reflection: [offered/answered/declined/already covered — personal answer belon
 Activity mode: [live app and editor, explicit static fallback, focused alternative, prior practice, or recap]
 
 ## Revisions
+
+- Date-of-birth pickers are tightened (valid days only, impossible dates cleared, all-or-none) — the learner asked for a tighter DOB while trying slice 4; `prd.md > Features and Behavior > Basic Information (flow 2)` and `spec.md > File Structure` were updated to match.
+- Nearby People request is sent from `App.jsx` when Continue or Retry is pressed, not from an effect inside `NearbyPeople.jsx` — React's development mode runs effects twice, which would have sent two match requests; `spec.md > Components` described the screen as sending it, the behavior is unchanged.
+- Backend `GET /api/airports` appears twice in the Network tab in development only (React's development mode); a built app sends it once.

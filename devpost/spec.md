@@ -181,6 +181,9 @@ checkdin/                         # this project folder
 │       ├── App.jsx               # screen switching + shared state
 │       ├── api.js                # the only code that calls the backend
 │       ├── chatStore.js          # session-storage chat with 3-hour expiry
+│       ├── dates.js              # valid-day rules for the date-of-birth pickers
+│       ├── options.js            # the fixed lists (interests, venues, genders, months, years)
+│       ├── time.js               # 12-hour pickers to 24-hour "HH:MM"
 │       ├── styles.css            # colors, type, layout
 │       ├── assets/
 │       │   └── departures-board.*  # welcome picture

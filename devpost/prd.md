@@ -49,7 +49,7 @@ Top to bottom: "Welcome to CheckdIn," the departures-board picture, three fields
 Fields in this order:
 1. **Picture** in a frame, captured with the camera or uploaded from the phone. Required.
 2. **Name**, typed. Required.
-3. **DOB**, three pickers: date, month, year (1950–2020). Optional.
+3. **DOB**, three pickers: date, month, year (1950–2020). Optional, but tight: the date choices follow the chosen month and year (no 31 April; 29 February only in leap years), changing the month or year to one that makes the chosen date impossible clears the date, and DOB is either all three chosen or all three empty.
 4. **Profession**, typed. Required.
 5. **Gender**, one choice from: Male, Female, Bisexual, Transgender, Prefer not to say. Required.
 6. **Native city**, typed. Optional.
@@ -57,6 +57,8 @@ Fields in this order:
 A green **Continue** button (same design as Start) moves to Interests.
   - [ ] Continue is disabled until picture, name, profession and gender are filled in.
   - [ ] Leaving DOB and native city empty does not block Continue.
+  - [ ] The date picker offers only valid days for the chosen month and year, and switching to a month or year that makes the chosen date impossible clears the date.
+  - [ ] With only some of date, month and year chosen, a hint appears and Continue is disabled; with all three or none, Continue is not blocked by DOB.
   - [ ] Both camera capture and upload put the chosen picture in the frame.
 
 ### Interests (flow 3)
