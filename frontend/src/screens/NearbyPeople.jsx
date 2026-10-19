@@ -7,7 +7,7 @@ export default function NearbyPeople({ matchState, onRetry, onStartOver, onChat 
 
   return (
     <main className="screen">
-      <h1>Nearby people</h1>
+      <h1>Travellers near you</h1>
 
       {status === "loading" && <p className="hint">Finding people at your airport…</p>}
 
