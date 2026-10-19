@@ -1,0 +1,92 @@
+[
+  {
+    "id": "priya-nair",
+    "name": "Priya Nair",
+    "profession": "Startup founder",
+    "airport_code": "LHR",
+    "boarding_time": "16:40",
+    "interests": ["Startups", "Technology"],
+    "venues": ["Cafe"],
+    "favorite_place": "Costa Coffee"
+  },
+  {
+    "id": "daniel-okafor",
+    "name": "Daniel Okafor",
+    "profession": "Equity investor",
+    "airport_code": "LHR",
+    "boarding_time": "17:10",
+    "interests": ["Markets"],
+    "venues": ["Bar", "Restaurant"],
+    "favorite_place": ""
+  },
+  {
+    "id": "sofia-marino",
+    "name": "Sofia Marino",
+    "profession": "Management consultant",
+    "airport_code": "LHR",
+    "boarding_time": "17:35",
+    "interests": ["Careers", "Travel"],
+    "venues": ["Lounge"],
+    "favorite_place": "A lounge near the gates"
+  },
+  {
+    "id": "james-whitfield",
+    "name": "James Whitfield",
+    "profession": "CFO",
+    "airport_code": "LHR",
+    "boarding_time": "18:05",
+    "interests": ["Just open to talk"],
+    "venues": ["Any place is good"],
+    "favorite_place": ""
+  },
+  {
+    "id": "aisha-rahman",
+    "name": "Aisha Rahman",
+    "profession": "Product manager",
+    "airport_code": "LHR",
+    "boarding_time": "18:40",
+    "interests": ["Technology", "Careers"],
+    "venues": ["Cafe", "Lounge"],
+    "favorite_place": ""
+  },
+  {
+    "id": "lucas-becker",
+    "name": "Lucas Becker",
+    "profession": "VC associate",
+    "airport_code": "LHR",
+    "boarding_time": "19:15",
+    "interests": ["Startups", "Markets"],
+    "venues": ["Bar"],
+    "favorite_place": ""
+  },
+  {
+    "id": "mei-tan",
+    "name": "Mei Tan",
+    "profession": "Travel writer",
+    "airport_code": "LHR",
+    "boarding_time": "19:50",
+    "interests": ["Travel"],
+    "venues": ["Restaurant"],
+    "favorite_place": "Wagamama"
+  },
+  {
+    "id": "tom-hughes",
+    "name": "Tom Hughes",
+    "profession": "Sales director",
+    "airport_code": "LHR",
+    "boarding_time": "21:30",
+    "interests": ["Careers"],
+    "venues": ["Cafe"],
+    "favorite_place": ""
+  },
+  {
+    "id": "elena-rossi",
+    "name": "Elena Rossi",
+    "profession": "Designer",
+    "airport_code": "JFK",
+    "boarding_time": "18:00",
+    "interests": ["Startups", "Technology"],
+    "venues": ["Cafe"],
+    "favorite_place": ""
+  }
+]

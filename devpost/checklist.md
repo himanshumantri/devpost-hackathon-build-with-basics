@@ -19,7 +19,7 @@ Build mode: learn
   Learner check: Open http://localhost:5173, pick London Heathrow, set a boarding time, and watch the green Start button turn on. Say whether the screen looks the way you pictured it.
   Commit: `Add Welcome screen with airport list from the backend`
 
-- [ ] **2. The backend matches sample people to a traveler (the kernel)**
+- [x] **2. The backend matches sample people to a traveler (the kernel)**
   Becomes usable: `POST /api/matches` takes an airport, boarding time, interests and venues and returns up to five sample people, sorted by your rules. You can try it by hand on the backend's `/docs` page.
   Why now: This is `scope.md > The Unique Kernel` (matching on airport, time, interests and venue). It is the one slice that is backend-only; it is justified because the rules carry the whole idea, the tests and the `/docs` page leave runnable evidence, and it shows you the backend working before any screen depends on it.
   PRD ref: `prd.md > Features and Behavior > Nearby People (flow 4)`, `prd.md > States and Boundaries`

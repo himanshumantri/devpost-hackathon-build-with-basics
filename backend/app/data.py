@@ -11,3 +11,4 @@ def load_json(filename):
 
 
 AIRPORTS = load_json("airports.json")
+SAMPLE_PEOPLE = load_json("sample_people.json")  # fictional people, for the demo
