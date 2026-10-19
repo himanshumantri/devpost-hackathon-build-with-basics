@@ -83,15 +83,15 @@ Build mode: learn
 
 ## Code Tour and App Map
 
-- [ ] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
-- [ ] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate
-- [ ] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
+- [x] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
+- [x] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate
+- [x] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
 
-Activity and evidence: [what actually happened; real document/test/code references; unfinished work if interrupted]
-Route and stops: [actual paths and symbols; guided stops completed, or reference-only route]
-Edit outcome: [tried/kept/reverted/declined/not applicable; verification if changed]
-Reflection: [offered/answered/declined/already covered — personal answer belongs only in the ignored profile]
-Activity mode: [live app and editor, explicit static fallback, focused alternative, prior practice, or recap]
+Activity and evidence: Guided route. The learner followed one action (pressing Continue on Interests) in the running app and in the browser's Network tab, then through three code locations and one test: the learner's question about where the frontend and backend talk is answered by `POST /api/matches`; `prd.md` "boarding times within one hour" → `backend/app/matching.py` (`if gap > MAX_GAP_MINUTES:`) → `backend/tests/test_matching.py` (`test_exactly_sixty_minutes_apart_is_included_and_sixty_one_is_not`). Reported: everything worked.
+Route and stops: `frontend/src/api.js` (`getMatches`) → `backend/app/main.py` (`post_matches`) → `backend/app/matching.py` (`find_matches`, `interests_match`, `venues_match`); evidence in `backend/tests/test_matching.py`. All stops completed.
+Edit outcome: Tried and kept. The Nearby People heading in `frontend/src/screens/NearbyPeople.jsx` was changed to "Travellers near you" by the learner; the dev server served the new text and it was committed (`142de0a`).
+Reflection: Offered ("What would you do differently next time you start with an agent?"); any personal answer belongs only in the ignored learner profile.
+Activity mode: Live app and editor. Take-home materials: `devpost/app-map.html` (map) and `devpost/CheckdIn-explained.pdf` (four-page plain-English write-up, source `devpost/checkdin-explained.html`).
 
 ## Revisions
 

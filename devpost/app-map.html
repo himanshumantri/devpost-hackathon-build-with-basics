@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CheckdIn — App map</title>
+<style>
+  :root { --bg:#f6f8fa; --card:#fff; --ink:#1b1f23; --muted:#5f6b76; --line:#d0d7de; --green:#198754; --green-soft:#e7f5ee; --blue:#0a66c2; --blue-soft:#e8f1fb; --code:#f0f3f6; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#12161b; --card:#1a2027; --ink:#e6eaee; --muted:#9aa6b2; --line:#2e3742; --green:#3fb27f; --green-soft:#173326; --blue:#6cb0f5; --blue-soft:#14283d; --code:#222a33; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.55 ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  main { max-width:880px; margin:0 auto; padding:24px 16px 64px; }
+  h1 { margin:0 0 4px; font-size:1.9rem; }
+  h2 { margin:0 0 8px; font-size:1.15rem; color:var(--green); }
+  p { margin:6px 0; }
+  section, details { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  details summary { cursor:pointer; font-weight:700; }
+  details[open] summary { margin-bottom:8px; }
+  .lead { color:var(--muted); margin:0 0 18px; }
+  code { font-family:ui-monospace, Consolas, monospace; font-size:.88rem; background:var(--code); padding:1px 6px; border-radius:6px; }
+  pre { background:var(--code); padding:10px 12px; border-radius:8px; overflow:auto; margin:8px 0; }
+  pre code { background:none; padding:0; }
+  .pieces { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:10px; margin-top:8px; }
+  .piece { border:1px solid var(--line); border-radius:10px; padding:10px 12px; }
+  .piece b { display:block; }
+  svg { width:100%; height:auto; }
+  svg text { fill:var(--ink); font-family:ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  .fe { fill:var(--blue-soft); stroke:var(--blue); }
+  .be { fill:var(--green-soft); stroke:var(--green); }
+  .arrow { stroke:var(--muted); stroke-width:2; fill:none; }
+  .stop { border-left:4px solid var(--green); padding:2px 0 2px 12px; margin:12px 0; }
+  .stop h3 { margin:0; font-size:1rem; }
+  table { width:100%; border-collapse:collapse; font-size:.95rem; }
+  th, td { text-align:left; padding:8px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  .note { color:var(--muted); font-size:.9rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>CheckdIn — App map</h1>
+  <p class="lead">A one-page guide to where things live, so you know where to start when you want to change something.</p>
+
+  <section>
+    <h2>What it is, in three pieces</h2>
+    <p>CheckdIn matches travelers at the same airport who board around the same time and share interests, then lets them chat. The people shown are fictional samples.</p>
+    <div class="pieces">
+      <div class="piece"><b>Frontend</b>The five screens you see: Welcome, Basic Information, Interests, Travellers near you, Chat. React, in <code>frontend/src/</code>.</div>
+      <div class="piece"><b>Backend</b>A small Python program that holds the data and applies the matching rules. FastAPI, in <code>backend/app/</code>.</div>
+      <div class="piece"><b>Data files</b>The airport list and the sample people, in <code>backend/data/</code>. No database.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>One action, followed through the code</h2>
+    <p>You press <strong>Continue</strong> on the Interests screen. This is what happens.</p>
+    <svg viewBox="0 0 860 330" role="img" aria-label="Diagram: pressing Continue calls findMatches in App.jsx, which calls getMatches in api.js, which sends POST /api/matches to post_matches in main.py, which calls find_matches in matching.py; the reply comes back to NearbyPeople.jsx and shows the cards.">
+      <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5f6b76"/></marker></defs>
+      <text x="215" y="22" text-anchor="middle" font-weight="700" font-size="14">Browser (frontend)</text>
+      <text x="645" y="22" text-anchor="middle" font-weight="700" font-size="14">Python program (backend)</text>
+
+      <rect class="fe" x="20" y="36" width="390" height="56" rx="10"/>
+      <text x="215" y="60" text-anchor="middle" font-size="14" font-weight="700">1 · Press Continue</text>
+      <text x="215" y="80" text-anchor="middle" font-size="12">App.jsx → findMatches()</text>
+
+      <rect class="fe" x="20" y="120" width="390" height="56" rx="10"/>
+      <text x="215" y="144" text-anchor="middle" font-size="14" font-weight="700">2 · Pack up the details</text>
+      <text x="215" y="164" text-anchor="middle" font-size="12">api.js → getMatches()  ·  POST /api/matches</text>
+
+      <rect class="be" x="450" y="120" width="390" height="56" rx="10"/>
+      <text x="645" y="144" text-anchor="middle" font-size="14" font-weight="700">3 · The request arrives</text>
+      <text x="645" y="164" text-anchor="middle" font-size="12">main.py → post_matches()</text>
+
+      <rect class="be" x="450" y="204" width="390" height="56" rx="10"/>
+      <text x="645" y="228" text-anchor="middle" font-size="14" font-weight="700">4 · The rules decide</text>
+      <text x="645" y="248" text-anchor="middle" font-size="12">matching.py → find_matches()</text>
+
+      <rect class="fe" x="20" y="204" width="390" height="56" rx="10"/>
+      <text x="215" y="228" text-anchor="middle" font-size="14" font-weight="700">5 · You see the cards</text>
+      <text x="215" y="248" text-anchor="middle" font-size="12">NearbyPeople.jsx → PersonCard.jsx</text>
+
+      <path class="arrow" d="M215,92 V118" marker-end="url(#a)"/>
+      <path class="arrow" d="M410,148 H448" marker-end="url(#a)"/>
+      <path class="arrow" d="M645,176 V202" marker-end="url(#a)"/>
+      <path class="arrow" d="M448,232 H412" marker-end="url(#a)"/>
+      <text x="430" y="290" text-anchor="middle" font-size="12">The reply (up to five people) travels back along the same road.</text>
+    </svg>
+  </section>
+
+  <section>
+    <h2>The route: three stops</h2>
+    <p class="note">This is the route to follow with the app open. Search for the name shown after each file.</p>
+
+    <div class="stop">
+      <h3>Stop 1 · The request leaves — <code>frontend/src/api.js</code></h3>
+      <p>Search for <code>getMatches</code>. It packs your airport, boarding time, interests and venues into a request to <code>/api/matches</code>. It is the only file in the frontend that talks to the backend.</p>
+    </div>
+    <div class="stop">
+      <h3>Stop 2 · The request arrives — <code>backend/app/main.py</code></h3>
+      <p>Search for <code>post_matches</code>. It receives the details and hands them to the rules. <code>models.py</code> next to it rejects a badly formed request before it gets here.</p>
+    </div>
+    <div class="stop">
+      <h3>Stop 3 · The rule decides — <code>backend/app/matching.py</code></h3>
+      <p>Search for <code>find_matches</code>, then the line <code>if gap &gt; MAX_GAP_MINUTES:</code>. That line is "within one hour", written in code. The interest and venue rules are the two functions above it, <code>interests_match</code> and <code>venues_match</code>.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>To change this, start here</h2>
+    <table>
+      <tr><th>If you want to…</th><th>Start in</th></tr>
+      <tr><td>Change a heading or wording on a screen</td><td><code>frontend/src/screens/</code> (for example the heading "Travellers near you" in <code>NearbyPeople.jsx</code>, a small edit already made)</td></tr>
+      <tr><td>Change colors, fonts or spacing</td><td><code>frontend/src/styles.css</code> (colors are the variables at the top)</td></tr>
+      <tr><td>Change who matches whom</td><td><code>backend/app/matching.py</code> (the two rule functions, <code>MAX_GAP_MINUTES</code> and <code>MAX_MATCHES</code>)</td></tr>
+      <tr><td>Add or edit sample people</td><td><code>backend/data/sample_people.json</code> (restart the backend after editing)</td></tr>
+      <tr><td>Add an interest or venue option</td><td><code>frontend/src/options.js</code> <em>and</em> <code>backend/app/models.py</code>. They must list the same choices.</td></tr>
+      <tr><td>Change how long chats are remembered</td><td><code>frontend/src/chatStore.js</code> (<code>THREE_HOURS_MS</code>)</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>A practice to reuse</h2>
+    <p><strong>Turn each requirement into something you can check.</strong> The product requirements said matches must board "within one hour" of each other. That became a precise statement: exactly 60 minutes apart is included, 61 is not. It now lives as the test <code>test_exactly_sixty_minutes_apart_is_included_and_sixty_one_is_not</code> in <code>backend/tests/test_matching.py</code>, and it passes.</p>
+    <p>On another project, write the observable result next to each requirement before asking an agent to build it, then ask for a test or a check that proves it. A requirement you can check is one you can trust.</p>
+    <details>
+      <summary>See the test and run it</summary>
+      <pre><code>cd backend
+.venv\Scripts\activate
+pytest</code></pre>
+      <p>Expected: all tests pass. A <code>pytest</code> run takes about a second.</p>
+    </details>
+  </section>
+
+  <section>
+    <h2>Run it again</h2>
+    <p>Two terminals, each starting in the project's top folder:</p>
+    <pre><code># terminal 1
+cd backend
+.venv\Scripts\activate
+uvicorn app.main:app --reload --port 8000
+
+# terminal 2
+cd frontend
+npm run dev</code></pre>
+    <p>Open the address the second terminal prints (<code>http://localhost:5173</code>). The full steps and a demo path are in <code>README.md</code>.</p>
+    <p class="note">This map is a snapshot of the code at commit <code>142de0a</code>. As the code changes, it can drift from the map.</p>
+  </section>
+</main>
+</body>
+</html>
