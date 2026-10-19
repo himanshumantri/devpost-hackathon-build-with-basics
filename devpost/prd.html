@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CheckdIn — Product Requirements</title>
+<style>
+  :root { --bg:#f6f7fb; --card:#fff; --ink:#1c2333; --muted:#5b6478; --accent:#2f5bea; --accent2:#e8eefe; --green:#1d8a5b; --warn:#b7791f; --line:#d9dff0; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#12151f; --card:#1a1f2e; --ink:#e8ebf4; --muted:#9aa3ba; --accent:#7b9bff; --accent2:#222b45; --line:#2c3450; } }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/1.55 system-ui, -apple-system, Segoe UI, sans-serif; background:var(--bg); color:var(--ink); }
+  main { max-width: 900px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { margin: 0 0 4px; font-size: 2rem; }
+  h2 { margin: 0 0 8px; font-size: 1.1rem; color: var(--accent); }
+  h3 { margin: 12px 0 4px; font-size: 1rem; }
+  .tag { display:inline-block; font-size:.75rem; padding:2px 8px; border-radius:99px; background:var(--accent2); color:var(--accent); }
+  .lead { color: var(--muted); margin: 4px 0 20px; }
+  section, details { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  details summary { cursor:pointer; font-weight:600; }
+  details[open] summary { margin-bottom:8px; }
+  ul { margin: 6px 0 0 1.1rem; padding:0; }
+  li { margin: 3px 0; }
+  svg { width:100%; height:auto; }
+  svg text { fill: var(--ink); font-family: system-ui, sans-serif; }
+  .box { fill: var(--accent2); stroke: var(--accent); }
+  .arrow { stroke: var(--accent); stroke-width: 2; fill: none; }
+  .tabs { display:flex; gap:8px; flex-wrap:wrap; margin:10px 0; }
+  .tabs button { flex:1 1 130px; padding:8px 10px; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:8px; cursor:pointer; font:inherit; }
+  .tabs button[aria-pressed="true"] { background:var(--green); color:#fff; border-color:var(--green); }
+  #detail { background:var(--accent2); border-radius:8px; padding:10px 14px; }
+  .crit li { list-style:none; margin-left:-1.1rem; }
+  .crit li::before { content:"☐ "; color:var(--green); }
+  .warn { border-left:4px solid var(--warn); }
+  .expand { font-size:.9rem; color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>CheckdIn <span class="tag">Product requirements · approved</span></h1>
+  <p class="lead">A mobile and desktop web app that matches travelers at the same airport, with similar boarding times and shared interests, so they can chat and agree on a place to meet.</p>
+
+  <section>
+    <h2>The core journey</h2>
+    <svg viewBox="0 0 860 170" role="img" aria-label="Journey: Welcome, Basic Information, Interests, Nearby People, Chat, with back arrow from Chat to Nearby People">
+      <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f5bea"/></marker></defs>
+      <rect class="box" x="5" y="40" width="150" height="70" rx="10"/><text x="80" y="70" text-anchor="middle" font-weight="700" font-size="14">1 Welcome</text><text x="80" y="90" text-anchor="middle" font-size="12">airport · time · gate</text>
+      <rect class="box" x="175" y="40" width="150" height="70" rx="10"/><text x="250" y="70" text-anchor="middle" font-weight="700" font-size="14">2 Basic info</text><text x="250" y="90" text-anchor="middle" font-size="12">picture · name · …</text>
+      <rect class="box" x="345" y="40" width="150" height="70" rx="10"/><text x="420" y="70" text-anchor="middle" font-weight="700" font-size="14">3 Interests</text><text x="420" y="90" text-anchor="middle" font-size="12">interests · venues</text>
+      <rect class="box" x="515" y="40" width="150" height="70" rx="10"/><text x="590" y="70" text-anchor="middle" font-weight="700" font-size="14">4 Nearby people</text><text x="590" y="90" text-anchor="middle" font-size="12">up to 5 matches</text>
+      <rect class="box" x="705" y="40" width="150" height="70" rx="10"/><text x="780" y="70" text-anchor="middle" font-weight="700" font-size="14">5 Chat</text><text x="780" y="90" text-anchor="middle" font-size="12">say "Hi"</text>
+      <path class="arrow" d="M155,75 H172" marker-end="url(#a)"/><path class="arrow" d="M325,75 H342" marker-end="url(#a)"/><path class="arrow" d="M495,75 H512" marker-end="url(#a)"/><path class="arrow" d="M665,75 H702" marker-end="url(#a)"/>
+      <path class="arrow" d="M780,110 V145 H590 V115" marker-end="url(#a)"/><text x="685" y="140" text-anchor="middle" font-size="12">back arrow</text>
+    </svg>
+    <p class="expand">Scope said "the ranked list appears and tapping chat opens a conversation." Now we know exactly what is on each screen, which fields are required, and who counts as a match.</p>
+  </section>
+
+  <section>
+    <h2>Screen by screen</h2>
+    <div class="tabs" id="tabs"></div>
+    <div id="detail"></div>
+  </section>
+
+  <section>
+    <h2>Who appears in the list</h2>
+    <p>Required for every match: <strong>same airport</strong> and <strong>boarding times within one hour</strong>. Then <strong>either</strong> an interest rule <strong>or</strong> a venue rule is enough.</p>
+    <details open>
+      <summary>Interest rules</summary>
+      <ul><li>A shared interest matches.</li><li>"Just open to talk" matches anyone at that airport.</li><li>Startups, Technology and Markets match each other.</li></ul>
+    </details>
+    <details>
+      <summary>Venue rules</summary>
+      <ul><li>Bar and Restaurant match each other.</li><li>Cafe and Lounge match each other.</li><li>"Any place is good" matches anyone.</li></ul>
+    </details>
+    <details>
+      <summary>Order and limit</summary>
+      <ul><li>Closest boarding time first, then interest match, then venue match.</li><li>At most five people.</li></ul>
+    </details>
+  </section>
+
+  <section>
+    <h2>Look and feel</h2>
+    <ul><li>Friendly type, minimal screens, LinkedIn-inspired with a single white background (ordinary text is dark).</li><li>Start, Continue and Start Over buttons: white text on green.</li><li>The departures-board picture is for the Welcome screen only.</li></ul>
+  </section>
+
+  <section>
+    <h2>States</h2>
+    <ul>
+      <li><strong>First use:</strong> Welcome with Start disabled until airport and boarding time are filled.</li>
+      <li><strong>No matches:</strong> "No matches found. Start over and try expanding your interests &amp; choices," then a green Start Over button back to Welcome.</li>
+      <li><strong>Chat memory:</strong> kept up to 3 hours in the browser session only.</li>
+      <li><strong>Privacy:</strong> no phone numbers or social profiles anywhere.</li>
+    </ul>
+  </section>
+
+  <details>
+    <summary>Building now · Deferred · Non-goals</summary>
+    <h3>Building now</h3>
+    <ul><li>The five screens with required fields and disabled buttons.</li><li>Matching and ordering over pre-made sample people.</li><li>Chat with back arrow, preset "Hi," and 3-hour session memory.</li><li>The no-matches message.</li></ul>
+    <h3>Deferred</h3>
+    <ul><li>Real people chatting live across phones.</li><li>Request-and-accept before chat.</li><li>Accounts and login.</li></ul>
+    <h3>Non-goals</h3>
+    <ul><li>No phone numbers or social profiles.</li><li>No push notifications.</li></ul>
+  </details>
+
+  <section class="warn">
+    <h2>Assumptions and open questions</h2>
+    <ul>
+      <li>Confirmed: minutes 00–59, no automatic replies after the first "Hi," and the Start Over message and button.</li>
+      <li>Still assumed: boarding time means today.</li>
+      <li>Still assumed: the Interests screen button is the same green Continue.</li>
+      <li>Still assumed: ordinary text is dark on the white background.</li>
+      <li>Nothing blocks the spec.</li>
+    </ul>
+  </section>
+</main>
+<script>
+  var screens = [
+    ["1 Welcome", "<p>Top to bottom: \"Welcome to CheckdIn,\" the departures-board picture, three fields, and the green Start button.</p><ul><li>Airport: picked from a global list. Required.</li><li>Boarding time: hour (1–12), minutes (00–59), AM/PM pickers. Required.</li><li>Boarding gate: typed. Optional.</li></ul><ul class=crit><li>Start is disabled while airport or boarding time is empty.</li><li>With both filled and gate empty, Start is enabled.</li><li>Airport can only be chosen from the list.</li></ul>"],
+    ["2 Basic info", "<ul><li>1 Picture in a frame (camera or upload). Required.</li><li>2 Name, typed. Required.</li><li>3 DOB: date, month, year (1950–2020) pickers. Optional.</li><li>4 Profession, typed. Required.</li><li>5 Gender: Male, Female, Bisexual, Transgender, Prefer not to say. Required.</li><li>6 Native city, typed. Optional.</li></ul><ul class=crit><li>Continue is disabled until picture, name, profession and gender are filled.</li><li>DOB and native city can stay empty.</li><li>Camera and upload both fill the frame.</li></ul>"],
+    ["3 Interests", "<ul><li>Interests dropdown (multi-select): Startups, Technology, Markets, Travel, Careers, \"Just open to talk.\" Required.</li><li>Venue dropdown (multi-select): \"Any place is good,\" Cafe, Bar, Lounge, Restaurant. Required.</li><li>Favorite place box with faint italic hint \"Enter one of your favorite ones on this airport.\" Optional.</li></ul><ul class=crit><li>Both dropdowns start closed.</li><li>Continue stays disabled until one interest and one venue are chosen.</li><li>The hint clears when the cursor enters the box.</li></ul>"],
+    ["4 Nearby people", "<p>Each person has two rows.</p><ul><li>Row 1: picture (left-most), name, Chat button.</li><li>Row 2: profession, interest tags, and favorite place if they entered one.</li></ul><ul class=crit><li>Nobody from another airport or more than an hour apart appears.</li><li>\"Just open to talk\" shows up for anyone in the window.</li><li>At most five, closest boarding time first.</li><li>Chat opens that person's conversation.</li><li>No matches: asks the person to start over and expand their choices.</li></ul>"],
+    ["5 Chat", "<ul><li>The other person's name is at the top; a left-arrow back control is at the top left.</li><li>The person is prompted to say \"Hi\"; it appears as a preset first message, then they type freely.</li><li>Chats are remembered up to 3 hours in the browser session.</li></ul><ul class=crit><li>Name shows at the top.</li><li>Back arrow returns to the list.</li><li>Reopening the same person within 3 hours shows earlier messages.</li><li>A different person has a separate conversation.</li></ul>"]
+  ];
+  var tabs = document.getElementById("tabs"), detail = document.getElementById("detail");
+  function show(i) {
+    Array.prototype.forEach.call(tabs.children, function (b, j) { b.setAttribute("aria-pressed", i === j); });
+    detail.innerHTML = screens[i][1];
+  }
+  screens.forEach(function (s, i) {
+    var b = document.createElement("button");
+    b.textContent = s[0];
+    b.onclick = function () { show(i); };
+    tabs.appendChild(b);
+  });
+  show(0);
+</script>
+</body>
+</html>

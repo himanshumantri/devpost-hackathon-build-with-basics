@@ -1,0 +1,181 @@
+/* CheckdIn look: white background, dark text, friendly rounded type, green buttons. */
+:root {
+  --bg: #ffffff;
+  --text: #1b1f23;
+  --muted: #5f6b76;
+  --line: #d0d7de;
+  --green: #198754;
+  --green-dark: #146c43;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-rounded, "SF Pro Rounded", "Nunito", "Segoe UI", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+.screen {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+h1 {
+  margin: 8px 0 0;
+  font-size: 1.9rem;
+  text-align: center;
+}
+
+label,
+legend {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 12px;
+  font: inherit;
+  color: inherit;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+input:focus,
+select:focus,
+button:focus-visible {
+  outline: 3px solid rgba(25, 135, 84, 0.35);
+  outline-offset: 1px;
+}
+
+.welcome-image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  display: block;
+}
+
+.credit {
+  margin: -6px 0 0;
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.intro {
+  margin: 4px 0;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.error {
+  padding: 12px;
+  border: 1px solid #f1aeb5;
+  background: #f8d7da;
+  border-radius: var(--radius);
+}
+
+.error p {
+  margin: 0 0 6px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--green-dark);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.time-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.time-row legend {
+  grid-column: 1 / -1;
+  padding: 0;
+  margin-bottom: 4px;
+}
+
+.airport-picker {
+  position: relative;
+}
+
+.airport-options {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.airport-options li {
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.airport-options li:hover {
+  background: #eef7f1;
+}
+
+.airport-city {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.primary-button {
+  margin-top: 8px;
+  padding: 14px;
+  font: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: var(--green);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.primary-button:hover:not(:disabled) {
+  background: var(--green-dark);
+}
+
+.primary-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

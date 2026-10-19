@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CheckdIn — Scope</title>
+<style>
+  :root { --bg:#f6f7fb; --card:#fff; --ink:#1c2333; --muted:#5b6478; --accent:#2f5bea; --accent2:#e8eefe; --ok:#1d8a5b; --later:#b7791f; --cut:#c0392b; --line:#d9dff0; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#12151f; --card:#1a1f2e; --ink:#e8ebf4; --muted:#9aa3ba; --accent:#7b9bff; --accent2:#222b45; --line:#2c3450; } }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/1.55 system-ui, -apple-system, Segoe UI, sans-serif; background:var(--bg); color:var(--ink); }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { margin: 0 0 4px; font-size: 2rem; }
+  h2 { margin: 0 0 8px; font-size: 1.1rem; color: var(--accent); }
+  .tag { display:inline-block; font-size:.75rem; padding:2px 8px; border-radius:99px; background:var(--accent2); color:var(--accent); }
+  .lead { color: var(--muted); margin: 4px 0 20px; }
+  section, details { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  details summary { cursor:pointer; font-weight:600; }
+  details[open] summary { margin-bottom:8px; }
+  ul { margin: 6px 0 0 1.1rem; padding:0; }
+  .kernel { border-left:4px solid var(--accent); }
+  .now summary { color: var(--ok); } .later summary { color: var(--later); } .cut summary { color: var(--cut); }
+  svg { width:100%; height:auto; }
+  svg text { fill: var(--ink); font-family: system-ui, sans-serif; }
+  .box { fill: var(--accent2); stroke: var(--accent); }
+  .arrow { stroke: var(--accent); stroke-width: 2; fill: none; }
+  .steps { display:flex; gap:8px; flex-wrap:wrap; margin:10px 0; }
+  .steps button { flex:1 1 150px; padding:8px 10px; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:8px; cursor:pointer; font:inherit; }
+  .steps button[aria-pressed="true"] { background:var(--accent); color:#fff; border-color:var(--accent); }
+  #stepdetail { background:var(--accent2); border-radius:8px; padding:10px 12px; min-height:3.2em; }
+</style>
+</head>
+<body>
+<main>
+  <h1>CheckdIn <span class="tag">Scope · approved</span></h1>
+  <p class="lead">An airport networking web app (mobile and desktop) that matches travelers at the same airport, with similar boarding times and shared interests, and lets them chat to agree on a cafe or bar to meet at.</p>
+
+  <section class="kernel">
+    <h2>The unique kernel</h2>
+    <p>Matching is built around airport time and place, not just interests. Two people match when they are at the same airport, board within an hour of each other, and share interests plus a cafe/bar or food preference. That "where, and do we have time" layer is what WhatsApp-status posts and chat groups don't offer.</p>
+  </section>
+
+  <section>
+    <h2>Who it's for, and the core loop</h2>
+    <svg viewBox="0 0 820 190" role="img" aria-label="Diagram: traveler enters profile and airport details, gets a ranked list of matches, opens a chat, and agrees on a place to meet">
+      <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f5bea"/></marker></defs>
+      <rect class="box" x="10" y="50" width="150" height="80" rx="10"/>
+      <text x="85" y="85" text-anchor="middle" font-size="14" font-weight="700">Traveler</text>
+      <text x="85" y="105" text-anchor="middle" font-size="12">consultant · founder</text>
+      <text x="85" y="120" text-anchor="middle" font-size="12">VC/PE · CXO</text>
+      <rect class="box" x="215" y="50" width="150" height="80" rx="10"/>
+      <text x="290" y="85" text-anchor="middle" font-size="14" font-weight="700">Profile + airport</text>
+      <text x="290" y="105" text-anchor="middle" font-size="12">boarding time, interests,</text>
+      <text x="290" y="120" text-anchor="middle" font-size="12">cafe/bar preference</text>
+      <rect class="box" x="420" y="50" width="150" height="80" rx="10"/>
+      <text x="495" y="85" text-anchor="middle" font-size="14" font-weight="700">Ranked matches</text>
+      <text x="495" y="105" text-anchor="middle" font-size="12">same airport, ±1 hour,</text>
+      <text x="495" y="120" text-anchor="middle" font-size="12">shared interests</text>
+      <rect class="box" x="625" y="50" width="185" height="80" rx="10"/>
+      <text x="717" y="85" text-anchor="middle" font-size="14" font-weight="700">Chat → agree place</text>
+      <text x="717" y="105" text-anchor="middle" font-size="12">back to list, chat with</text>
+      <text x="717" y="120" text-anchor="middle" font-size="12">someone else</text>
+      <path class="arrow" d="M160,90 H212" marker-end="url(#a)"/>
+      <path class="arrow" d="M365,90 H417" marker-end="url(#a)"/>
+      <path class="arrow" d="M570,90 H622" marker-end="url(#a)"/>
+      <path class="arrow" d="M717,130 V165 H495 V135" marker-end="url(#a)"/>
+    </svg>
+    <p>Today this person sits alone at a coffee shop, bar or lounge, or reads a book. They'd like to meet someone new to open up an idea, learn about user trends, deepen an existing idea, or validate a thesis with a like-minded person.</p>
+  </section>
+
+  <section>
+    <h2>What "working" looks like: four flows</h2>
+    <div class="steps" id="steps"></div>
+    <div id="stepdetail"></div>
+    <p><strong>The "oh, that's cool" beat:</strong> the ranked list appears, each person with a suggested place to meet, and tapping chat opens a conversation that gets a reply.</p>
+  </section>
+
+  <details class="now" open>
+    <summary>Now — the proof-of-concept boundary</summary>
+    <ul>
+      <li>The four flows, working in a browser on phone-sized and desktop screens.</li>
+      <li>Matching on same airport, boarding time within one hour, and interest overlap, ranked by shared interest.</li>
+      <li>Matched people are pre-made sample people; chat replies are simulated.</li>
+      <li>Phone numbers and social profiles are never collected or shown.</li>
+    </ul>
+  </details>
+
+  <details class="later">
+    <summary>Later</summary>
+    <ul>
+      <li>Real people finding each other and chatting live across phones (needs a shared backend).</li>
+      <li>A mutual request-and-accept step before chat opens.</li>
+      <li>Meetups of three or more people.</li>
+      <li>Safety features such as blocking and reporting.</li>
+      <li>Real flight and boarding verification, and real airport and venue data.</li>
+    </ul>
+  </details>
+
+  <details class="cut">
+    <summary>Explicitly cut</summary>
+    <ul>
+      <li><strong>Live two-phone chat between real users:</strong> a bigger build than fits a 2–4 hour proof of concept.</li>
+      <li><strong>Accounts and login:</strong> not needed to prove the matching and chat.</li>
+      <li><strong>Push notifications:</strong> not needed for the demo.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Identity and why it matters</summary>
+    <p><strong>Look and feel:</strong> not stated yet. <code>3-prd</code> will ask. The only reference so far is people posting on WhatsApp status or chat groups to find others at their airport.</p>
+    <p><strong>Why it matters:</strong> excitement about connecting people at the airport for leisure and networking, and a goal of learning to build a production app with a coding agent.</p>
+  </details>
+</main>
+<script>
+  var flows = [
+    ["1 · Welcome", "\"Welcome to CheckdIn,\" a departures-board picture, current airport, boarding time and optional gate, and a START button."],
+    ["2 · Basic info", "Picture, name, profession, gender, and optional DOB and native city."],
+    ["3 · Interests", "Interests and venue preferences, plus an optional favorite place at the airport. This is the matching step."],
+    ["4 · Nearby people", "Up to five matched people, ordered by closest boarding time, each with a chat option and a favorite place if given. From chat, go back to the list and chat with the same or another person."]
+  ];
+  var box = document.getElementById("steps"), out = document.getElementById("stepdetail");
+  function show(i) {
+    Array.prototype.forEach.call(box.children, function (b, j) { b.setAttribute("aria-pressed", i === j); });
+    out.textContent = flows[i][1];
+  }
+  flows.forEach(function (f, i) {
+    var b = document.createElement("button");
+    b.textContent = f[0];
+    b.onclick = function () { show(i); };
+    box.appendChild(b);
+  });
+  show(0);
+</script>
+</body>
+</html>

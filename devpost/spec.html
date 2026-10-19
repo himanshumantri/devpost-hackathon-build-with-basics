@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CheckdIn — Technical Spec</title>
+<style>
+  :root { --bg:#f6f7fb; --card:#fff; --ink:#1c2333; --muted:#5b6478; --accent:#2f5bea; --accent2:#e8eefe; --green:#198754; --warn:#b7791f; --line:#d9dff0; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#12151f; --card:#1a1f2e; --ink:#e8ebf4; --muted:#9aa3ba; --accent:#7b9bff; --accent2:#222b45; --line:#2c3450; } }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/1.55 system-ui, -apple-system, Segoe UI, sans-serif; background:var(--bg); color:var(--ink); }
+  main { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { margin: 0 0 4px; font-size: 2rem; }
+  h2 { margin: 0 0 8px; font-size: 1.1rem; color: var(--accent); }
+  .tag { display:inline-block; font-size:.75rem; padding:2px 8px; border-radius:99px; background:var(--accent2); color:var(--accent); }
+  .lead { color: var(--muted); margin: 4px 0 20px; }
+  section, details { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  details summary { cursor:pointer; font-weight:600; }
+  details[open] summary { margin-bottom:8px; }
+  ul { margin: 6px 0 0 1.1rem; padding:0; } li { margin:3px 0; }
+  code, pre { font-family: ui-monospace, Consolas, monospace; font-size:.88rem; }
+  pre { background:var(--accent2); padding:10px 12px; border-radius:8px; overflow:auto; }
+  svg { width:100%; height:auto; }
+  svg text { fill: var(--ink); font-family: system-ui, sans-serif; }
+  .fe { fill: var(--accent2); stroke: var(--accent); }
+  .be { fill: #e6f4ec; stroke: var(--green); }
+  @media (prefers-color-scheme: dark) { .be { fill:#173326; } }
+  .arrow { stroke: var(--accent); stroke-width: 2; fill: none; }
+  .call { stroke: var(--green); stroke-width: 2.5; fill: none; }
+  .tabs { display:flex; gap:8px; flex-wrap:wrap; margin:10px 0; }
+  .tabs button { flex:1 1 140px; padding:8px 10px; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:8px; cursor:pointer; font:inherit; }
+  .tabs button[aria-pressed="true"] { background:var(--green); color:#fff; border-color:var(--green); }
+  #step { background:var(--accent2); border-radius:8px; padding:10px 14px; }
+  table { width:100%; border-collapse:collapse; font-size:.9rem; }
+  th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  .warn { border-left:4px solid var(--warn); }
+  .scroll { overflow-x:auto; }
+</style>
+</head>
+<body>
+<main>
+  <h1>CheckdIn <span class="tag">Technical spec · approved</span></h1>
+  <p class="lead">Two programs side by side: a React frontend you see, and a small Python (FastAPI) backend that holds the data and applies the matching rules.</p>
+
+  <section>
+    <h2>The big picture: two places they talk</h2>
+    <svg viewBox="0 0 860 260" role="img" aria-label="Architecture: browser with React frontend, calls to the Python backend for airports and matches, chat stored in browser session storage">
+      <defs>
+        <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f5bea"/></marker>
+        <marker id="g" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#198754"/></marker>
+      </defs>
+      <rect class="fe" x="10" y="20" width="360" height="220" rx="12"/>
+      <text x="190" y="46" text-anchor="middle" font-weight="700" font-size="15">Frontend · React (browser)</text>
+      <text x="190" y="80" text-anchor="middle" font-size="13">5 screens · what you type</text>
+      <text x="190" y="102" text-anchor="middle" font-size="13">your picture (never sent)</text>
+      <text x="190" y="124" text-anchor="middle" font-size="13">match list · chat screen</text>
+      <rect class="fe" x="60" y="150" width="260" height="62" rx="8" stroke-dasharray="5 4"/>
+      <text x="190" y="176" text-anchor="middle" font-size="13">Session storage</text>
+      <text x="190" y="195" text-anchor="middle" font-size="12">chats, dropped after 3 hours</text>
+      <rect class="be" x="490" y="20" width="360" height="220" rx="12"/>
+      <text x="670" y="46" text-anchor="middle" font-weight="700" font-size="15">Backend · Python + FastAPI</text>
+      <text x="670" y="80" text-anchor="middle" font-size="13">main.py · answers requests</text>
+      <text x="670" y="102" text-anchor="middle" font-size="13">matching.py · the rules</text>
+      <rect class="be" x="540" y="130" width="260" height="82" rx="8" stroke-dasharray="5 4"/>
+      <text x="670" y="156" text-anchor="middle" font-size="13">airports.json</text>
+      <text x="670" y="176" text-anchor="middle" font-size="13">sample_people.json</text>
+      <text x="670" y="196" text-anchor="middle" font-size="12">read at startup</text>
+      <path class="call" d="M372,95 H486" marker-end="url(#g)"/>
+      <text x="430" y="86" text-anchor="middle" font-size="12" font-weight="700">① GET /api/airports</text>
+      <path class="call" d="M486,170 H372" marker-end="url(#g)" style="stroke-dasharray:0"/>
+      <text x="430" y="160" text-anchor="middle" font-size="12" font-weight="700">② POST /api/matches</text>
+      <text x="430" y="190" text-anchor="middle" font-size="12">reply: up to 5 people</text>
+    </svg>
+    <p>Only two requests happen in a normal run. Everything else, including chat, stays in the browser.</p>
+  </section>
+
+  <section>
+    <h2>Follow one person through the system</h2>
+    <div class="tabs" id="tabs"></div>
+    <div id="step"></div>
+  </section>
+
+  <section>
+    <h2>How the matching works (backend, <code>matching.py</code>)</h2>
+    <ul>
+      <li><strong>Filter:</strong> same airport and boarding time within 60 minutes (same day).</li>
+      <li><strong>Interest rule:</strong> a shared interest; or either has "Just open to talk"; or both have one of Startups / Technology / Markets.</li>
+      <li><strong>Venue rule:</strong> either has "Any place is good"; or both have Bar/Restaurant; or both have Cafe/Lounge.</li>
+      <li><strong>Keep</strong> anyone passing the interest rule or the venue rule.</li>
+      <li><strong>Sort:</strong> closest boarding time, then interest match first, then venue match first. Keep five.</li>
+    </ul>
+  </section>
+
+  <details>
+    <summary>The two API calls in detail</summary>
+    <p><code>GET /api/airports</code> → list of airports.</p>
+<pre>[ { "code": "LHR", "name": "London Heathrow Airport", "city": "London", "country": "United Kingdom" }, … ]</pre>
+    <p><code>POST /api/matches</code></p>
+<pre>request: { "airport_code": "LHR", "boarding_time": "18:00",
+           "interests": ["Startups"], "venues": ["Cafe"] }
+reply:   { "matches": [ { "id", "name", "profession", "interests",
+           "favorite_place", "boarding_time",
+           "matched_on_interest", "matched_on_venue" } ] }</pre>
+    <p>A badly formed request gets a 422 reply automatically. FastAPI also serves a test page at <code>/docs</code>.</p>
+  </details>
+
+  <details>
+    <summary>Sample people for the demo (fictional)</summary>
+    <div class="scroll"><table>
+      <tr><th>Name</th><th>Profession</th><th>Airport</th><th>Boards</th><th>Interests</th><th>Venues</th></tr>
+      <tr><td>Priya Nair</td><td>Startup founder</td><td>LHR</td><td>16:40</td><td>Startups, Technology</td><td>Cafe</td></tr>
+      <tr><td>Daniel Okafor</td><td>Equity investor</td><td>LHR</td><td>17:10</td><td>Markets</td><td>Bar, Restaurant</td></tr>
+      <tr><td>Sofia Marino</td><td>Management consultant</td><td>LHR</td><td>17:35</td><td>Careers, Travel</td><td>Lounge</td></tr>
+      <tr><td>James Whitfield</td><td>CFO</td><td>LHR</td><td>18:05</td><td>Just open to talk</td><td>Any place is good</td></tr>
+      <tr><td>Aisha Rahman</td><td>Product manager</td><td>LHR</td><td>18:40</td><td>Technology, Careers</td><td>Cafe, Lounge</td></tr>
+      <tr><td>Lucas Becker</td><td>VC associate</td><td>LHR</td><td>19:15</td><td>Startups, Markets</td><td>Bar</td></tr>
+      <tr><td>Mei Tan</td><td>Travel writer</td><td>LHR</td><td>19:50</td><td>Travel</td><td>Restaurant</td></tr>
+      <tr><td>Tom Hughes</td><td>Sales director</td><td>LHR</td><td>21:30</td><td>Careers</td><td>Cafe</td></tr>
+      <tr><td>Elena Rossi</td><td>Designer</td><td>JFK</td><td>18:00</td><td>Startups, Technology</td><td>Cafe</td></tr>
+    </table></div>
+    <p>Elena (different airport) and Tom (far outside the window) exist to show that the rules exclude people.</p>
+  </details>
+
+  <details>
+    <summary>File structure</summary>
+<pre>checkdin/
+├── backend/
+│   ├── app/  main.py · matching.py · models.py · data.py
+│   ├── data/ airports.json · sample_people.json
+│   ├── tests/test_matching.py
+│   └── requirements.txt
+├── frontend/
+│   ├── index.html · package.json · vite.config.js
+│   └── src/
+│       ├── main.jsx · App.jsx · api.js · chatStore.js · styles.css
+│       ├── assets/departures-board.*
+│       ├── screens/ Welcome · BasicInfo · Interests · NearbyPeople · Chat
+│       └── components/ PersonCard · Avatar · ChecklistDropdown · AirportPicker · PrimaryButton
+├── devpost/
+├── .gitignore
+└── README.md</pre>
+  </details>
+
+  <details>
+    <summary>Stack, how to run, and look and feel</summary>
+    <ul>
+      <li><strong>Frontend:</strong> React 18 + Vite, plain JavaScript and CSS (<a href="https://react.dev/">react.dev</a>, <a href="https://vite.dev/">vite.dev</a>).</li>
+      <li><strong>Backend:</strong> Python 3.11, FastAPI, Uvicorn, Pydantic, pytest (<a href="https://fastapi.tiangolo.com/">fastapi.tiangolo.com</a>).</li>
+      <li><strong>Run:</strong> terminal 1: <code>cd backend</code>, create a venv, <code>pip install -r requirements.txt</code>, <code>uvicorn app.main:app --reload --port 8000</code>. Terminal 2: <code>cd frontend</code>, <code>npm install</code>, <code>npm run dev</code>. Open <code>http://localhost:5173</code>.</li>
+      <li><strong>Demo:</strong> London Heathrow, boarding between about 5:00 and 7:00 PM, interests like Startups + Cafe. For "no matches," pick another airport or a distant time.</li>
+      <li><strong>Look:</strong> white background, dark text, rounded friendly sans-serif, green buttons with white text, initials avatars for sample people, departures picture only on Welcome.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Where each piece of data lives</summary>
+    <div class="scroll"><table>
+      <tr><th>Data</th><th>Where</th><th>After a refresh</th></tr>
+      <tr><td>Airport, time, gate, profile, picture, interests, venues</td><td>React state</td><td>Lost; back to Welcome</td></tr>
+      <tr><td>Match list</td><td>React state</td><td>Lost</td></tr>
+      <tr><td>Chats</td><td>Session storage</td><td>Kept up to 3 hours in the same browser session</td></tr>
+      <tr><td>Airports, sample people</td><td>Backend JSON files</td><td>Unchanged</td></tr>
+    </table></div>
+  </details>
+
+  <details>
+    <summary>If something goes wrong</summary>
+    <ul>
+      <li>Backend not running → "Can't reach the server. Is the backend running?" with Retry; Start stays disabled.</li>
+      <li>No matches → "No matches found. Start over and try expanding your interests &amp; choices" plus Start Over.</li>
+      <li>Session storage unavailable → chat works for this visit but isn't remembered.</li>
+      <li>Camera capture on desktop → standard browser behavior (file picker on desktop, camera on phone); no special handling.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>What was simplified and why</summary>
+    <ul>
+      <li>Pre-made sample people instead of real users (needs a shared database and live updates).</li>
+      <li>Fixed boarding times so the demo is predictable.</li>
+      <li>JSON files instead of a database; no login; session storage instead of a chat server.</li>
+      <li>Initials avatars for sample people; screens chosen by a state value instead of a router.</li>
+    </ul>
+  </details>
+
+  <section class="warn">
+    <h2>Your question, and open issues</h2>
+    <p><strong>Your question:</strong> where do frontend and backend talk? Two places, shown above. In the build you'll check this in the browser's Network tab and by trying the endpoints at <code>/docs</code>.</p>
+    <ul>
+      <li>Airport data source and licence (must include LHR).</li>
+      <li>Decided: the build finds one openly licensed departures-board image in the same black, yellow and white theme and records its source and licence (fallback: an original SVG).</li>
+      <li>Decided: camera and upload behave as standard on desktop and phone, with no special handling.</li>
+      <li>"Say Hi" prompt posts "Hi" as the first message, then free typing; adjust if you want a different feel.</li>
+      <li>Boarding times are compared within one day (no after-midnight handling).</li>
+      <li>Exact package versions are unverified.</li>
+    </ul>
+  </section>
+</main>
+<script>
+  var steps = [
+    ["1 Open", "The browser loads the React app and asks the backend <code>GET /api/airports</code>. The airport picker fills with the list."],
+    ["2 Welcome", "You pick an airport and time, optionally a gate. These stay in the frontend. Start turns on when airport and time are set."],
+    ["3 Basic info", "Picture, name, profession, gender (and optional DOB, native city). Stay in the frontend; the picture is never sent anywhere."],
+    ["4 Interests", "You tick interests and venues and optionally type a favorite place. Stay in the frontend."],
+    ["5 Nearby people", "The frontend sends <code>POST /api/matches</code> with airport, time, interests and venues. The backend applies the rules, sorts, keeps five and replies. The frontend draws the cards or the no-matches message."],
+    ["6 Chat", "Tapping Chat opens the conversation. Earlier messages are read from session storage; each message you send is saved there. The back arrow returns to the list with no new request."]
+  ];
+  var tabs = document.getElementById("tabs"), out = document.getElementById("step");
+  function show(i) {
+    Array.prototype.forEach.call(tabs.children, function (b, j) { b.setAttribute("aria-pressed", i === j); });
+    out.innerHTML = steps[i][1];
+  }
+  steps.forEach(function (s, i) {
+    var b = document.createElement("button");
+    b.textContent = s[0];
+    b.onclick = function () { show(i); };
+    tabs.appendChild(b);
+  });
+  show(0);
+</script>
+</body>
+</html>
