@@ -298,6 +298,88 @@ button:focus-visible {
   opacity: 0.8;
 }
 
+/* Chat */
+.chat {
+  min-height: 100vh;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.chat-header h1 {
+  margin: 0;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.back-button {
+  width: 40px;
+  height: 40px;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--text);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.messages {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  overflow-y: auto;
+}
+
+.bubble {
+  max-width: 80%;
+  padding: 8px 14px;
+  color: #fff;
+  background: var(--green);
+  border-radius: 16px 16px 4px 16px;
+  overflow-wrap: anywhere;
+}
+
+.say-hi {
+  text-align: center;
+  color: var(--muted);
+}
+
+.say-hi p {
+  margin: 0 0 8px;
+}
+
+.chat-form {
+  display: flex;
+  gap: 8px;
+}
+
+.send-button {
+  padding: 0 18px;
+  font: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: var(--green);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.send-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 /* Nearby people */
 .person-list {
   margin: 0;

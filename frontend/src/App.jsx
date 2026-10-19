@@ -5,6 +5,7 @@ import Welcome from "./screens/Welcome.jsx";
 import BasicInfo from "./screens/BasicInfo.jsx";
 import Interests from "./screens/Interests.jsx";
 import NearbyPeople from "./screens/NearbyPeople.jsx";
+import Chat from "./screens/Chat.jsx";
 
 // Everything the person has entered lives here, in the browser tab's memory.
 const EMPTY_TRIP = {
@@ -31,6 +32,7 @@ export default function App() {
   const [profile, setProfile] = useState(EMPTY_PROFILE);
   const [prefs, setPrefs] = useState(EMPTY_PREFS);
   const [matchState, setMatchState] = useState(NO_MATCHES_YET);
+  const [chatPerson, setChatPerson] = useState(null);
 
   // Call 2 of 2: ask the backend who matches. Runs when Continue or Retry is pressed.
   function findMatches() {
@@ -81,5 +83,20 @@ export default function App() {
     );
   }
 
-  return <NearbyPeople matchState={matchState} onRetry={findMatches} onStartOver={startOver} />;
+  // The match list stays in memory while a chat is open, so going back needs no new request.
+  if (screen === "chat") {
+    return <Chat key={chatPerson.id} person={chatPerson} onBack={() => setScreen("nearby")} />;
+  }
+
+  return (
+    <NearbyPeople
+      matchState={matchState}
+      onRetry={findMatches}
+      onStartOver={startOver}
+      onChat={(person) => {
+        setChatPerson(person);
+        setScreen("chat");
+      }}
+    />
+  );
 }

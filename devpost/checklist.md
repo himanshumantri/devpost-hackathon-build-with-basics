@@ -49,7 +49,7 @@ Build mode: learn
   Learner check: Go from Welcome through Basic Information to Interests. Add a picture from a file (on your phone, try the camera too) and see it fill the frame. Say what you'd change about the layout.
   Commit: `Add Basic Information screen`
 
-- [ ] **5. You can chat with a matched person**
+- [x] **5. You can chat with a matched person**
   Becomes usable: Tapping Chat on a card opens a screen with that person's name, a left-arrow back control, a "Say Hi" prompt that posts "Hi" as the first message, and free typing after that. The back arrow returns to the list. Chats are remembered for up to 3 hours in the browser session.
   Why now: Finishes the core journey end to end and is the last behavior in `prd.md > What We're Building`.
   PRD ref: `prd.md > Features and Behavior > Chat`, `prd.md > States and Boundaries`
