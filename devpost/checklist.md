@@ -59,7 +59,7 @@ Build mode: learn
   Learner check: Chat with one person, go back with the arrow, open someone else, then return to the first person and see your messages still there.
   Commit: `Add chat with matched people`
 
-- [ ] **6. Ready to record: README, responsive check and demo path**
+- [x] **6. Ready to record: README, responsive check and demo path**
   Becomes usable: A reviewer can read the README, start both programs, and follow the demo script to see the whole flow. The screens look right on a phone-sized window and on desktop.
   Why now: The submission needs a short demo video and a public repo; this makes the project runnable and recordable by someone else.
   PRD ref: `prd.md > What We're Building`, `prd.md > Look and Feel`
