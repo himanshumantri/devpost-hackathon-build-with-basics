@@ -29,7 +29,7 @@ Build mode: learn
   Learner check: Open http://localhost:8000/docs, try `POST /api/matches` with LHR, 18:00, Startups and Cafe, and read the reply. Check that Tom Hughes and Elena Rossi are not in it and that James Whitfield (open to talk) is.
   Commit: `Add matching rules and sample people to the backend`
 
-- [ ] **3. Interests screen and the Nearby People list work end to end**
+- [x] **3. Interests screen and the Nearby People list work end to end**
   Becomes usable: Start on Welcome opens the Interests screen (two closed dropdown checklists and an optional favorite-place box); Continue opens Nearby People, which calls the backend and shows up to five two-row cards, or the "No matches found" message with a green Start Over button, or a "Can't reach the server" message with Retry. (Basic Information is added in the next slice, so for now Welcome goes straight to Interests.)
   Why now: Connects the kernel to the screen, the second of the two frontend/backend calls. After this slice the core "see who I could meet" loop works.
   PRD ref: `prd.md > Features and Behavior > Interests (flow 3)`, `prd.md > Features and Behavior > Nearby People (flow 4)`, `prd.md > States and Boundaries`
@@ -71,7 +71,7 @@ Build mode: learn
 
 ## Hands-on Checkpoints
 
-- [ ] Early usable behavior explored — after slice 3 (the kernel working end to end)
+- [x] Early usable behavior explored — after slice 3 (the kernel working end to end)
 - [ ] Final kick-the-tires exploration and feedback completed
 
 ## Final Review
