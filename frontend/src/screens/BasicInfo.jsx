@@ -48,7 +48,7 @@ export default function BasicInfo({ profile, onProfileChange, onContinue }) {
         {profile.photoUrl ? (
           <img src={profile.photoUrl} alt="Your picture" />
         ) : (
-          <span className="photo-empty">Your picture</span>
+          <span className="photo-empty">Share picture so others can quickly recognize you</span>
         )}
       </div>
       <div className="photo-actions">

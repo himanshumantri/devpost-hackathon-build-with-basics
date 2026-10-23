@@ -1,4 +1,4 @@
-// A colored circle with initials, used instead of photos for the sample people.
+// The person's round picture. If they have no picture, a colored circle with their initials.
 const COLORS = ["#0a66c2", "#7a3e9d", "#b4501e", "#2b7a78", "#a23b72", "#5c6b1f"];
 
 function initials(name) {
@@ -16,7 +16,10 @@ function colorFor(name) {
   return COLORS[total % COLORS.length];
 }
 
-export default function Avatar({ name }) {
+export default function Avatar({ name, photoUrl }) {
+  if (photoUrl) {
+    return <img className="avatar avatar-photo" src={photoUrl} alt="" />;
+  }
   return (
     <span className="avatar" style={{ background: colorFor(name) }} aria-hidden="true">
       {initials(name)}

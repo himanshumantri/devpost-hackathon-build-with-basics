@@ -38,7 +38,7 @@ export default function Welcome({ trip, onTripChange, onStart }) {
       <p className="credit">
         Photo: Marek Ślusarczyk (Tupungato), CC BY 3.0, via Wikimedia Commons
       </p>
-      <p className="intro">Start by sharing your present airport, boarding gate &amp; time</p>
+      <p className="intro">Start by sharing your current airport, boarding gate &amp; time</p>
 
       <label htmlFor="airport">Airport</label>
       {loadError ? (

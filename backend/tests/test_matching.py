@@ -3,7 +3,9 @@ from fastapi.testclient import TestClient
 
 from app.data import SAMPLE_PEOPLE
 from app.main import app
-from app.matching import find_matches, interests_match, venues_match
+from datetime import date
+
+from app.matching import age_in_years, find_matches, interests_match, venues_match
 
 
 def person(pid, time="18:00", airport="LHR", interests=("Travel",), venues=("Cafe",)):
@@ -169,3 +171,31 @@ def test_endpoint_rejects_empty_interests_and_unknown_values():
 def test_airports_endpoint_includes_heathrow():
     airports = client.get("/api/airports").json()
     assert any(a["code"] == "LHR" for a in airports)
+
+
+# --- Gate and age ------------------------------------------------------
+
+def test_age_counts_whole_years_and_only_after_the_birthday():
+    today = date(2026, 10, 23)
+    assert age_in_years("1991-10-23", today) == 35  # birthday today
+    assert age_in_years("1991-10-24", today) == 34  # birthday tomorrow
+    assert age_in_years("2000-02-29", today) == 26
+
+
+def test_age_is_none_when_no_date_of_birth_was_shared():
+    assert age_in_years("") is None
+    assert age_in_years(None) is None
+
+
+def test_matches_carry_gate_and_age_but_not_the_date_of_birth():
+    people = [dict(person("a"), gate="B32", date_of_birth="1991-03-14")]
+    result = find_matches("LHR", "18:00", ["Travel"], ["Cafe"], people, today=date(2026, 10, 23))
+    assert result[0]["gate"] == "B32"
+    assert result[0]["age"] == 35
+    assert "date_of_birth" not in result[0]
+
+
+def test_person_without_gate_or_date_of_birth_still_matches():
+    result = find_matches("LHR", "18:00", ["Travel"], ["Cafe"], [person("a")])
+    assert result[0]["gate"] == ""
+    assert result[0]["age"] is None

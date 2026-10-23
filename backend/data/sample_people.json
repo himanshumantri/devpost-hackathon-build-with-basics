@@ -5,9 +5,16 @@
     "profession": "Startup founder",
     "airport_code": "LHR",
     "boarding_time": "16:40",
-    "interests": ["Startups", "Technology"],
-    "venues": ["Cafe"],
-    "favorite_place": "Costa Coffee"
+    "interests": [
+      "Startups",
+      "Technology"
+    ],
+    "venues": [
+      "Cafe"
+    ],
+    "favorite_place": "Costa Coffee",
+    "gate": "B32",
+    "date_of_birth": "1991-03-14"
   },
   {
     "id": "daniel-okafor",
@@ -15,9 +22,16 @@
     "profession": "Equity investor",
     "airport_code": "LHR",
     "boarding_time": "17:10",
-    "interests": ["Markets"],
-    "venues": ["Bar", "Restaurant"],
-    "favorite_place": ""
+    "interests": [
+      "Markets"
+    ],
+    "venues": [
+      "Bar",
+      "Restaurant"
+    ],
+    "favorite_place": "",
+    "gate": "B35",
+    "date_of_birth": "1984-09-02"
   },
   {
     "id": "sofia-marino",
@@ -25,9 +39,16 @@
     "profession": "Management consultant",
     "airport_code": "LHR",
     "boarding_time": "17:35",
-    "interests": ["Careers", "Travel"],
-    "venues": ["Lounge"],
-    "favorite_place": "A lounge near the gates"
+    "interests": [
+      "Careers",
+      "Travel"
+    ],
+    "venues": [
+      "Lounge"
+    ],
+    "favorite_place": "A lounge near the gates",
+    "gate": "B30",
+    "date_of_birth": "1989-11-23"
   },
   {
     "id": "james-whitfield",
@@ -35,9 +56,15 @@
     "profession": "CFO",
     "airport_code": "LHR",
     "boarding_time": "18:05",
-    "interests": ["Just open to talk"],
-    "venues": ["Any place is good"],
-    "favorite_place": ""
+    "interests": [
+      "Just open to talk"
+    ],
+    "venues": [
+      "Any place is good"
+    ],
+    "favorite_place": "",
+    "gate": "A12",
+    "date_of_birth": ""
   },
   {
     "id": "aisha-rahman",
@@ -45,9 +72,17 @@
     "profession": "Product manager",
     "airport_code": "LHR",
     "boarding_time": "18:40",
-    "interests": ["Technology", "Careers"],
-    "venues": ["Cafe", "Lounge"],
-    "favorite_place": ""
+    "interests": [
+      "Technology",
+      "Careers"
+    ],
+    "venues": [
+      "Cafe",
+      "Lounge"
+    ],
+    "favorite_place": "",
+    "gate": "B34",
+    "date_of_birth": "1993-06-07"
   },
   {
     "id": "lucas-becker",
@@ -55,9 +90,16 @@
     "profession": "VC associate",
     "airport_code": "LHR",
     "boarding_time": "19:15",
-    "interests": ["Startups", "Markets"],
-    "venues": ["Bar"],
-    "favorite_place": ""
+    "interests": [
+      "Startups",
+      "Markets"
+    ],
+    "venues": [
+      "Bar"
+    ],
+    "favorite_place": "",
+    "gate": "C8",
+    "date_of_birth": "1987-01-19"
   },
   {
     "id": "mei-tan",
@@ -65,9 +107,15 @@
     "profession": "Travel writer",
     "airport_code": "LHR",
     "boarding_time": "19:50",
-    "interests": ["Travel"],
-    "venues": ["Restaurant"],
-    "favorite_place": "Wagamama"
+    "interests": [
+      "Travel"
+    ],
+    "venues": [
+      "Restaurant"
+    ],
+    "favorite_place": "Wagamama",
+    "gate": "B31",
+    "date_of_birth": "1995-08-30"
   },
   {
     "id": "tom-hughes",
@@ -75,9 +123,15 @@
     "profession": "Sales director",
     "airport_code": "LHR",
     "boarding_time": "21:30",
-    "interests": ["Careers"],
-    "venues": ["Cafe"],
-    "favorite_place": ""
+    "interests": [
+      "Careers"
+    ],
+    "venues": [
+      "Cafe"
+    ],
+    "favorite_place": "",
+    "gate": "A15",
+    "date_of_birth": ""
   },
   {
     "id": "elena-rossi",
@@ -85,8 +139,15 @@
     "profession": "Designer",
     "airport_code": "JFK",
     "boarding_time": "18:00",
-    "interests": ["Startups", "Technology"],
-    "venues": ["Cafe"],
-    "favorite_place": ""
+    "interests": [
+      "Startups",
+      "Technology"
+    ],
+    "venues": [
+      "Cafe"
+    ],
+    "favorite_place": "",
+    "gate": "B22",
+    "date_of_birth": "1990-05-11"
   }
 ]

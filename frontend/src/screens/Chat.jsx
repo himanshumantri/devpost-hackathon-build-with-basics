@@ -29,7 +29,7 @@ export default function Chat({ person, onBack }) {
         <button type="button" className="back-button" aria-label="Back to the list" onClick={onBack}>
           ←
         </button>
-        <Avatar name={person.name} />
+        <Avatar name={person.name} photoUrl={person.photo_url} />
         <h1>{person.name}</h1>
       </header>
 

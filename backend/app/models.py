@@ -27,6 +27,9 @@ class Match(BaseModel):
     interests: list[str]
     favorite_place: str
     boarding_time: str
+    gate: str
+    age: int | None
+    photo_url: str
     matched_on_interest: bool
     matched_on_venue: bool
 

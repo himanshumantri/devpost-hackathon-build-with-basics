@@ -5,6 +5,8 @@ A traveler is matched with sample people who are at the same airport, boarding
 within an hour of them, and who pass an interest rule or a venue rule.
 """
 
+from datetime import date
+
 MAX_MATCHES = 5
 MAX_GAP_MINUTES = 60
 
@@ -27,6 +29,17 @@ def minutes_since_midnight(hhmm):
     return int(hours) * 60 + int(minutes)
 
 
+def age_in_years(date_of_birth, today=None):
+    """'1991-03-14' -> age in whole years today. Empty or missing -> None (they didn't share it).
+    Only the age leaves the backend, never the date of birth itself."""
+    if not date_of_birth:
+        return None
+    today = today or date.today()
+    born = date.fromisoformat(date_of_birth)
+    had_birthday = (today.month, today.day) >= (born.month, born.day)
+    return today.year - born.year - (0 if had_birthday else 1)
+
+
 def interests_match(mine, theirs):
     """Interest rule: a shared interest, or either is open to talk,
     or both like Startups / Technology / Markets."""
@@ -47,7 +60,7 @@ def venues_match(mine, theirs):
     return any(mine & group and theirs & group for group in VENUE_GROUPS)
 
 
-def find_matches(airport_code, boarding_time, interests, venues, people):
+def find_matches(airport_code, boarding_time, interests, venues, people, today=None):
     """Return up to five people who match this traveler, best first.
 
     Required: same airport and boarding times within MAX_GAP_MINUTES.
@@ -82,6 +95,9 @@ def find_matches(airport_code, boarding_time, interests, venues, people):
             "interests": person["interests"],
             "favorite_place": person["favorite_place"],
             "boarding_time": person["boarding_time"],
+            "gate": person.get("gate", ""),
+            "age": age_in_years(person.get("date_of_birth"), today),
+            "photo_url": person.get("photo_url", ""),
             "matched_on_interest": on_interest,
             "matched_on_venue": on_venue,
         }
