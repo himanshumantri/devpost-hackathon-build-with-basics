@@ -93,6 +93,8 @@ def find_matches(airport_code, boarding_time, interests, venues, people, today=N
             "name": person["name"],
             "profession": person["profession"],
             "interests": person["interests"],
+            "venues": person["venues"],
+            "native_city": person.get("native_city", ""),
             "favorite_place": person["favorite_place"],
             "boarding_time": person["boarding_time"],
             "gate": person.get("gate", ""),

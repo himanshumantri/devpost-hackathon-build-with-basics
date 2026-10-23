@@ -25,7 +25,9 @@ class Match(BaseModel):
     name: str
     profession: str
     interests: list[str]
+    venues: list[str]
     favorite_place: str
+    native_city: str
     boarding_time: str
     gate: str
     age: int | None

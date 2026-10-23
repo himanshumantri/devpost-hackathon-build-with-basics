@@ -199,3 +199,15 @@ def test_person_without_gate_or_date_of_birth_still_matches():
     result = find_matches("LHR", "18:00", ["Travel"], ["Cafe"], [person("a")])
     assert result[0]["gate"] == ""
     assert result[0]["age"] is None
+
+
+def test_matches_carry_venues_and_native_city():
+    people = [dict(person("a"), native_city="Kochi")]
+    result = find_matches("LHR", "18:00", ["Travel"], ["Cafe"], people)
+    assert result[0]["venues"] == ["Cafe"]
+    assert result[0]["native_city"] == "Kochi"
+
+
+def test_native_city_is_empty_when_not_shared():
+    result = find_matches("LHR", "18:00", ["Travel"], ["Cafe"], [person("a")])
+    assert result[0]["native_city"] == ""

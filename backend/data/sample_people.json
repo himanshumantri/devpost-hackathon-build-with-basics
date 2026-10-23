@@ -15,7 +15,8 @@
     "favorite_place": "Costa Coffee",
     "gate": "B32",
     "date_of_birth": "1991-03-14",
-    "photo_url": "/people/priya-nair.jpg"
+    "photo_url": "/people/priya-nair.jpg",
+    "native_city": "Kochi"
   },
   {
     "id": "daniel-okafor",
@@ -33,7 +34,8 @@
     "favorite_place": "",
     "gate": "B35",
     "date_of_birth": "1984-09-02",
-    "photo_url": "/people/daniel-okafor.jpg"
+    "photo_url": "/people/daniel-okafor.jpg",
+    "native_city": "Lagos"
   },
   {
     "id": "sofia-marino",
@@ -51,7 +53,8 @@
     "favorite_place": "A lounge near the gates",
     "gate": "B30",
     "date_of_birth": "1989-11-23",
-    "photo_url": "/people/sofia-marino.jpg"
+    "photo_url": "/people/sofia-marino.jpg",
+    "native_city": "Naples"
   },
   {
     "id": "james-whitfield",
@@ -68,7 +71,8 @@
     "favorite_place": "",
     "gate": "A12",
     "date_of_birth": "",
-    "photo_url": "/people/james-whitfield.jpg"
+    "photo_url": "/people/james-whitfield.jpg",
+    "native_city": ""
   },
   {
     "id": "aisha-rahman",
@@ -87,7 +91,8 @@
     "favorite_place": "",
     "gate": "B34",
     "date_of_birth": "1993-06-07",
-    "photo_url": "/people/aisha-rahman.jpg"
+    "photo_url": "/people/aisha-rahman.jpg",
+    "native_city": "Birmingham"
   },
   {
     "id": "lucas-becker",
@@ -105,7 +110,8 @@
     "favorite_place": "",
     "gate": "C8",
     "date_of_birth": "1987-01-19",
-    "photo_url": "/people/lucas-becker.jpg"
+    "photo_url": "/people/lucas-becker.jpg",
+    "native_city": "Hamburg"
   },
   {
     "id": "mei-tan",
@@ -122,7 +128,8 @@
     "favorite_place": "Wagamama",
     "gate": "B31",
     "date_of_birth": "1995-08-30",
-    "photo_url": "/people/mei-tan.jpg"
+    "photo_url": "/people/mei-tan.jpg",
+    "native_city": "Singapore"
   },
   {
     "id": "tom-hughes",
@@ -139,7 +146,8 @@
     "favorite_place": "",
     "gate": "A15",
     "date_of_birth": "",
-    "photo_url": "/people/tom-hughes.jpg"
+    "photo_url": "/people/tom-hughes.jpg",
+    "native_city": ""
   },
   {
     "id": "elena-rossi",
@@ -157,6 +165,7 @@
     "favorite_place": "",
     "gate": "B22",
     "date_of_birth": "1990-05-11",
-    "photo_url": "/people/elena-rossi.jpg"
+    "photo_url": "/people/elena-rossi.jpg",
+    "native_city": "Milan"
   }
 ]
