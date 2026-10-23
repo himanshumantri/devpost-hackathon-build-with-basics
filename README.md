@@ -103,3 +103,7 @@ devpost/          the planning documents (scope, PRD, spec, build checklist)
 
 - **Airport list** (`backend/data/airports.json`): derived from [OurAirports](https://ourairports.com/data/) open data (public domain), keeping large and medium airports with scheduled service and an IATA code.
 - **Sample people** are entirely fictional.
+- **Blurred page background (airport concourse):** [BWI concourseABC.jpg](https://commons.wikimedia.org/wiki/File%3ABWI_concourseABC.jpg) by Cicku, CC0, via Wikimedia Commons. Resized and compressed.
+- **Welcome slideshow, security:** [CBP officers conduct operations at Philadelphia International Airport (53923805602).jpg](https://commons.wikimedia.org/wiki/File%3ACBP_officers_conduct_operations_at_Philadelphia_International_Airport_%2853923805602%29.jpg) by CBP Photography, Public domain, via Wikimedia Commons. Resized and compressed.
+- **Welcome slideshow, departures screens:** [Monitor area imbarchi Olbia (2024).jpg](https://commons.wikimedia.org/wiki/File%3AMonitor_area_imbarchi_Olbia_%282024%29.jpg) by Air fans, CC0, via Wikimedia Commons. Resized and compressed.
+- **Welcome slideshow, departure lounge:** [Departure lounge of the Chennai International Airport 03.jpg](https://commons.wikimedia.org/wiki/File%3ADeparture_lounge_of_the_Chennai_International_Airport_03.jpg) by Pinakpani, CC BY-SA 4.0, via Wikimedia Commons. Resized and compressed.
