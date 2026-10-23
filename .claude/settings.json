@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -)",
+      "Bash(.venv/Scripts/python -m pytest -q)",
+      "Read(//c/Users/himan/.vscode/**)"
+    ]
+  }
+}

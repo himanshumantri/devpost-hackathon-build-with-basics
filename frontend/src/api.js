@@ -1,7 +1,11 @@
 // The only file that talks to the backend.
 
+// Empty while developing (the Vite proxy forwards /api to the backend).
+// On Vercel, set VITE_API_URL to the hosted backend address, e.g. https://checkdin-api.onrender.com
+const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
+
 async function request(path, options) {
-  const response = await fetch(path, options);
+  const response = await fetch(API_URL + path, options);
   if (!response.ok) {
     throw new Error(`The server answered with status ${response.status}`);
   }
