@@ -21,19 +21,30 @@ body {
   line-height: 1.5;
 }
 
-/* The airport illustration sits behind everything and never takes clicks. */
+/* A real airport photo, blurred and faded so it sets the mood without stealing attention. */
 .airport-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
+  overflow: hidden;
   background: var(--bg);
 }
 
-.airport-bg svg {
+.airport-bg img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   display: block;
+  filter: blur(16px) saturate(0.75);
+  transform: scale(1.1);
+}
+
+.airport-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(244, 248, 252, 0.62);
 }
 
 /* Each screen is a soft white card floating over the airport scene so text stays easy to read. */
@@ -92,12 +103,60 @@ button:focus-visible {
   color: #2d5a85;
 }
 
-.traveler-scene {
+.slides {
+  position: relative;
   width: 100%;
-  height: auto;
-  display: block;
+  aspect-ratio: 16 / 10;
   border-radius: var(--radius);
-  border: 1px solid #cfe3f3;
+  overflow: hidden;
+  background: #dfe7ee;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  animation: slide-cycle 6s ease-in-out infinite;
+}
+
+.slide:first-child {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.slide figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 28px 14px 10px;
+  color: #fff;
+  font-weight: 600;
+  background: linear-gradient(transparent, rgba(15, 30, 45, 0.6));
+}
+
+@keyframes slide-cycle {
+  0% { opacity: 0; transform: scale(1); }
+  6% { opacity: 1; }
+  33% { opacity: 1; }
+  39% { opacity: 0; }
+  100% { opacity: 0; transform: scale(1.07); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    animation: none;
+  }
+  .slide:not(:first-child) {
+    display: none;
+  }
 }
 
 .intro {
@@ -532,4 +591,11 @@ button:focus-visible {
 .primary-button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+.credit {
+  margin: 4px 0 0;
+  font-size: 0.7rem;
+  color: #7b8794;
+  text-align: center;
 }
