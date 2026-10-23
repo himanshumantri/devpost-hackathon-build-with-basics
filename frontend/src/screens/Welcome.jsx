@@ -107,6 +107,8 @@ export default function Welcome({ trip, onTripChange, onStart }) {
         Start
       </PrimaryButton>
 
+      <p className="credit credit-bg">Background photo: Matthew Smith (Unsplash, CC0), via Wikimedia Commons</p>
+
     </main>
   );
 }
