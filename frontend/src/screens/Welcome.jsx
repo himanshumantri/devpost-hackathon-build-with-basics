@@ -3,7 +3,7 @@ import { getAirports } from "../api.js";
 import { isTimeComplete } from "../time.js";
 import AirportPicker from "../components/AirportPicker.jsx";
 import PrimaryButton from "../components/PrimaryButton.jsx";
-import TravelerSlides from "../components/TravelerSlides.jsx";
+import boardImage from "../assets/departures-board.jpg";
 
 const HOURS = Array.from({ length: 12 }, (_, i) => String(i + 1));
 const MINUTES = Array.from({ length: 60 }, (_, i) => String(i).padStart(2, "0"));
@@ -34,7 +34,10 @@ export default function Welcome({ trip, onTripChange, onStart }) {
     <main className="screen welcome">
       <h1>Welcome to CheckdIn</h1>
       <p className="tagline">Spend airport time meeting people like you</p>
-      <TravelerSlides />
+      <img className="welcome-image" src={boardImage} alt="An airport departures board" />
+      <p className="credit">
+        Photo: Marek Ślusarczyk (Tupungato), CC BY 3.0, via Wikimedia Commons
+      </p>
       <p className="intro">Start by sharing your present airport, boarding gate &amp; time</p>
 
       <label htmlFor="airport">Airport</label>
@@ -104,10 +107,7 @@ export default function Welcome({ trip, onTripChange, onStart }) {
         Start
       </PrimaryButton>
 
-      <p className="credit">
-        Photos via Wikimedia Commons: Cicku (CC0), CBP Photography (public domain), Air fans (CC0),
-        Pinakpani (CC BY-SA 4.0)
-      </p>
+      <p className="credit credit-bg">Background photo: Cicku (CC0), via Wikimedia Commons</p>
     </main>
   );
 }
