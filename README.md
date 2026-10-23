@@ -103,5 +103,15 @@ devpost/          the planning documents (scope, PRD, spec, build checklist)
 
 - **Airport list** (`backend/data/airports.json`): derived from [OurAirports](https://ourairports.com/data/) open data (public domain), keeping large and medium airports with scheduled service and an IATA code.
 - **Sample people** are entirely fictional.
+- **Sample-people portraits** (`frontend/public/people/`): free CC0 (public domain) photos from Wikimedia Commons, cropped to the face and resized. The people are fictional, so these photos are only illustrations and do not show the people named. Photographers:
+  - James Whitfield: [Gray-haired man portrait (Unsplash).jpg](https://commons.wikimedia.org/wiki/File%3AGray-haired_man_portrait_%28Unsplash%29.jpg) by Foto  Sushi fotosushi, CC0
+  - Daniel Okafor: [Scott James Reeves Portrait – Professional Headshot of Scott James Reeves in Blue Blazer.jpg](https://commons.wikimedia.org/wiki/File%3AScott_James_Reeves_Portrait_%E2%80%93_Professional_Headshot_of_Scott_James_Reeves_in_Blue_Blazer.jpg) by Scott James Reeves, CC0
+  - Lucas Becker: [Always smile (Unsplash).jpg](https://commons.wikimedia.org/wiki/File%3AAlways_smile_%28Unsplash%29.jpg) by michael m_minimal, CC0
+  - Tom Hughes: [Portrait of a smiling person with reddish-brown hair, 2026.jpg](https://commons.wikimedia.org/wiki/File%3APortrait_of_a_smiling_person_with_reddish-brown_hair%2C_2026.jpg) by Matt Southy, CC0
+  - Priya Nair: [Smiling woman (Unsplash).jpg](https://commons.wikimedia.org/wiki/File%3ASmiling_woman_%28Unsplash%29.jpg) by Allef Vinicius seteales, CC0
+  - Sofia Marino: [Brunette woman portrait (Unsplash).jpg](https://commons.wikimedia.org/wiki/File%3ABrunette_woman_portrait_%28Unsplash%29.jpg) by Christopher Campbell chrisjoelcampbell, CC0
+  - Aisha Rahman: [Smiling woman pink shirt.jpg](https://commons.wikimedia.org/wiki/File%3ASmiling_woman_pink_shirt.jpg) by Joshua McKnight, CC0
+  - Mei Tan: [Woman in red t-shirt smiling and looking down.jpg](https://commons.wikimedia.org/wiki/File%3AWoman_in_red_t-shirt_smiling_and_looking_down.jpg) by Chu Chup Hinh, CC0
+  - Elena Rossi: [Smiling woman by a window (Unsplash NoRsyXmHGpI).jpg](https://commons.wikimedia.org/wiki/File%3ASmiling_woman_by_a_window_%28Unsplash_NoRsyXmHGpI%29.jpg) by Brooke Cagle brookecagle, CC0
 - **Departures-board photo** on the Welcome screen: "Airport departures board free photo - Melbourne Airport timetable" by Marek Ślusarczyk (Tupungato), licensed [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). Source: https://commons.wikimedia.org/wiki/File:47_Airport_departures_board_free_photo_-_Melbourne_Airport_timetable_-_Creative_Commons_Attribution.jpg. The image was resized to 1000 px wide.
 - **Page background** (airport terminal window): [Airport terminal window sun (Unsplash).jpg](https://commons.wikimedia.org/wiki/File%3AAirport_terminal_window_sun_%28Unsplash%29.jpg) by Matthew Smith, CC0, via Wikimedia Commons. Cropped, resized and compressed.
