@@ -101,6 +101,5 @@ devpost/          the planning documents (scope, PRD, spec, build checklist)
 
 ## Credits and licences
 
-- **Departures-board photo** on the Welcome screen: "Airport departures board free photo - Melbourne Airport timetable" by Marek Ślusarczyk (Tupungato), licensed [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). Source: https://commons.wikimedia.org/wiki/File:47_Airport_departures_board_free_photo_-_Melbourne_Airport_timetable_-_Creative_Commons_Attribution.jpg. The image was resized to 1000 px wide.
 - **Airport list** (`backend/data/airports.json`): derived from [OurAirports](https://ourairports.com/data/) open data (public domain), keeping large and medium airports with scheduled service and an IATA code.
 - **Sample people** are entirely fictional.

@@ -1,6 +1,6 @@
-/* CheckdIn look: white background, dark text, friendly rounded type, green buttons. */
+/* CheckdIn look: bright airport-hall backdrop, dark text, friendly rounded type, green buttons. */
 :root {
-  --bg: #ffffff;
+  --bg: #eaf5ff;
   --text: #1b1f23;
   --muted: #5f6b76;
   --line: #d0d7de;
@@ -21,10 +21,30 @@ body {
   line-height: 1.5;
 }
 
+/* The airport illustration sits behind everything and never takes clicks. */
+.airport-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--bg);
+}
+
+.airport-bg svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Each screen is a soft white card floating over the airport scene so text stays easy to read. */
 .screen {
   max-width: 480px;
-  margin: 0 auto;
-  padding: 24px 16px 48px;
+  margin: 16px auto 32px;
+  padding: 24px 16px 40px;
+  background: rgba(255, 255, 255, 0.86);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(40, 80, 120, 0.15);
+  backdrop-filter: blur(6px);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -60,18 +80,24 @@ button:focus-visible {
   outline-offset: 1px;
 }
 
-.welcome-image {
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius);
-  display: block;
+.welcome {
+  max-width: 560px;
 }
 
-.credit {
-  margin: -6px 0 0;
-  font-size: 0.7rem;
-  color: #b9bfc6; /* very light on purpose; the full credit is also in the README */
+.tagline {
+  margin: -4px 0 0;
   text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d5a85;
+}
+
+.traveler-scene {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+  border: 1px solid #cfe3f3;
 }
 
 .intro {
