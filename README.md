@@ -4,6 +4,13 @@
 
 It's a proof of concept built for the Devpost *Build With AI: Basics* hackathon. It works on phones and desktops in the browser.
 
+## Live demo
+
+- **App (frontend, Vercel):** https://checkdin.vercel.app/
+- **API (backend, Render):** https://checkdin-api.onrender.com (for example, [/api/airports](https://checkdin-api.onrender.com/api/airports))
+
+The backend is on a free plan and goes to sleep when idle, so the first load after a quiet spell can take up to a minute.
+
 > **Important:** the people you are matched with are **fictional sample people** stored in a data file, and they don't reply in chat. Real users finding each other live would need a shared backend, which is out of scope for this proof of concept.
 
 ## How it works
