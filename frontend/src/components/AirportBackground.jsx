@@ -1,4 +1,4 @@
-// A real airport concourse photo, blurred and washed out so it sets the mood
+// A real airport photo, with reduced contrast so it sets the mood
 // without competing with the screen content. Purely decorative.
 import concourse from "../assets/bg.jpg";
 
